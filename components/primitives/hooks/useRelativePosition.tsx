@@ -18,13 +18,13 @@ const HIDDEN_CONTENT: ViewStyle = {
 };
 
 type UseRelativePositionArgs = Omit<
-  GetContentStyleArgs,
-  'triggerPosition' | 'contentLayout' | 'dimensions'
+    GetContentStyleArgs,
+    'triggerPosition' | 'contentLayout' | 'dimensions'
 > & {
-  triggerPosition: LayoutPosition | null;
-  contentLayout: LayoutRectangle | null;
-  disablePositioningStyle?: boolean;
-};
+    triggerPosition: LayoutPosition | null
+    contentLayout: LayoutRectangle | null
+    disablePositioningStyle?: boolean
+}
 
 export function useRelativePosition({
   align,
@@ -60,23 +60,23 @@ export function useRelativePosition({
 }
 
 export interface LayoutPosition {
-  pageY: number;
-  pageX: number;
-  width: number;
-  height: number;
+    pageY: number
+    pageX: number
+    width: number
+    height: number
 }
 
 interface GetPositionArgs {
-  dimensions: ScaledSize;
-  avoidCollisions: boolean;
-  triggerPosition: LayoutPosition;
-  contentLayout: LayoutRectangle;
-  insets?: Insets;
+    dimensions: ScaledSize
+    avoidCollisions: boolean
+    triggerPosition: LayoutPosition
+    contentLayout: LayoutRectangle
+    insets?: Insets
 }
 
 interface GetSidePositionArgs extends GetPositionArgs {
-  side: 'top' | 'bottom';
-  sideOffset: number;
+    side: 'top' | 'bottom'
+    sideOffset: number
 }
 
 function getSidePosition({
@@ -90,8 +90,8 @@ function getSidePosition({
 }: GetSidePositionArgs) {
   const insetTop = insets?.top ?? 0;
   const insetBottom = insets?.bottom ?? 0;
-  const positionTop = triggerPosition?.pageY - sideOffset - contentLayout.height;
-  const positionBottom = triggerPosition.pageY + triggerPosition.height + sideOffset;
+  const positionTop =        triggerPosition?.pageY - sideOffset - contentLayout.height;
+  const positionBottom =        triggerPosition.pageY + triggerPosition.height + sideOffset;
 
   if (!avoidCollisions) {
     return {
@@ -106,13 +106,16 @@ function getSidePosition({
   }
 
   return {
-    top: Math.min(dimensions.height - insetBottom - contentLayout.height, positionBottom),
+    top: Math.min(
+      dimensions.height - insetBottom - contentLayout.height,
+      positionBottom
+    ),
   };
 }
 
 interface GetAlignPositionArgs extends GetPositionArgs {
-  align: 'start' | 'center' | 'end';
-  alignOffset: number;
+    align: 'start' | 'center' | 'end'
+    alignOffset: number
 }
 
 function getAlignPosition({
@@ -142,10 +145,11 @@ function getAlignPosition({
   );
 
   if (avoidCollisions) {
-    const doesCollide = left < insetLeft || left + contentWidth > dimensions.width - insetRight;
+    const doesCollide =            left < insetLeft
+            || left + contentWidth > dimensions.width - insetRight;
     if (doesCollide) {
       const spaceLeft = left - insetLeft;
-      const spaceRight = dimensions.width - insetRight - (left + contentWidth);
+      const spaceRight =                dimensions.width - insetRight - (left + contentWidth);
 
       if (spaceLeft > spaceRight && spaceLeft >= contentWidth) {
         left = insetLeft;
@@ -155,7 +159,7 @@ function getAlignPosition({
         const centeredPosition = Math.max(
           insetLeft,
           (dimensions.width - contentWidth - insetRight) / 2
-        );
+                )
         left = centeredPosition;
       }
     }
@@ -186,11 +190,16 @@ function getLeftPosition(
   }
   return Math.max(
     insetLeft,
-    Math.min(left + alignOffset, dimensions.width - contentWidth - insetRight)
+    Math.min(
+      left + alignOffset,
+      dimensions.width - contentWidth - insetRight,
+        ),
   );
 }
 
-type GetContentStyleArgs = GetPositionArgs & GetSidePositionArgs & GetAlignPositionArgs;
+type GetContentStyleArgs = GetPositionArgs &
+    GetSidePositionArgs &
+    GetAlignPositionArgs
 
 function getContentStyle({
   align,
@@ -223,5 +232,5 @@ function getContentStyle({
       insets,
       dimensions,
     })
-  );
+    )
 }

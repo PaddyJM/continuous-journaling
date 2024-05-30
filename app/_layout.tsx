@@ -33,7 +33,7 @@ export default function RootLayout() {
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    (async () => {
+        ;(async () => {
       const theme = await AsyncStorage.getItem('theme');
       if (Platform.OS === 'web') {
         // Adds the background color to the html element to prevent white background on overscroll.
@@ -62,18 +62,18 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
-      <Stack>
-        <Stack.Screen
-          name='index'
-          options={{
-            title: 'Starter Base',
-            headerRight: () => <ThemeToggle />,
-          }}
-        />
-      </Stack>
-      <PortalHost />
-    </ThemeProvider>
+      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+          <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+          <Stack>
+          <Stack.Screen
+                    name="index"
+                  options={{
+                        title: 'Starter Base',
+                      headerRight: () => <ThemeToggle />,
+                    }}
+                />
+        </Stack>
+            <PortalHost />
+        </ThemeProvider>
   );
 }
