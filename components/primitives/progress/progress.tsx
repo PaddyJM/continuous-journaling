@@ -26,24 +26,24 @@ const Root = React.forwardRef<ViewRef, SlottableViewProps & ProgressRootProps>(
 
     const Component = asChild ? Slot.View : View;
     return (
-          <Component
-              role="progressbar"
-                ref={ref}
-              aria-valuemax={max}
-                aria-valuemin={0}
-              aria-valuenow={value}
-                aria-valuetext={getValueLabel(value, max)}
-                accessibilityValue={{
-              min: 0,
-                    max,
-              now: value,
-              text: getValueLabel(value, max),
-            }}
-              {...props}
-            />
+      <Component
+        role="progressbar"
+        ref={ref}
+        aria-valuemax={max}
+        aria-valuemin={0}
+        aria-valuenow={value}
+        aria-valuetext={getValueLabel(value, max)}
+        accessibilityValue={{
+          min: 0,
+          max,
+          now: value,
+          text: getValueLabel(value, max),
+        }}
+        {...props}
+      />
     );
   }
-)
+);
 
 Root.displayName = 'RootProgress';
 
@@ -52,7 +52,7 @@ const Indicator = React.forwardRef<ViewRef, SlottableViewProps>(
     const Component = asChild ? Slot.View : View;
     return <Component ref={ref} role="presentation" {...props} />;
   }
-);
+)
 
 Indicator.displayName = 'IndicatorProgress';
 

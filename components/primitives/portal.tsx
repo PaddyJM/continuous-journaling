@@ -11,7 +11,7 @@ const usePortal = create<{ map: PortalHostMap }>(() => ({
   map: new Map<string, PortalMap>().set(
     DEFAULT_PORTAL_HOST,
     new Map<string, React.ReactNode>(),
-    ),
+  ),
 }));
 
 const updatePortal = (
@@ -38,8 +38,8 @@ const removePortal = (hostName: string, name: string) => {
 };
 
 export function PortalHost({ name = DEFAULT_PORTAL_HOST }: { name?: string }) {
-  const portalMap =        usePortal((state) => state.map).get(name)
-        ?? new Map<string, React.ReactNode>();
+  const portalMap = usePortal((state) => state.map).get(name)
+  new Map<string, React.ReactNode>()
   if (portalMap.size === 0) return null;
   return <>{Array.from(portalMap.values())}</>;
 }
@@ -49,18 +49,20 @@ export function Portal({
   hostName = DEFAULT_PORTAL_HOST,
   children,
 }: {
-    name: string
-    hostName?: string
-    children: React.ReactNode
+  name: string
+  hostName?: string
+  children: React.ReactNode
 }) {
   React.useEffect(() => {
     updatePortal(hostName, name, children);
   }, [hostName, name, children]);
 
   React.useEffect(
-        () => () => {
-    removePortal(hostName, name);
-  }, [hostName, name]);
+    () => () => {
+      removePortal(hostName, name)
+    },
+    [hostName, name]
+  )
 
   return null;
 }
