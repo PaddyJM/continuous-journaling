@@ -181,12 +181,12 @@ function combineStyles(slotStyle?: Style, childValue?: Style) {
     if (typeof slotStyle === 'function') {
         return (state: PressableStateCallbackType) => (childValue
                 ? StyleSheet.flatten([slotStyle(state), childValue])
-                : slotStyle(state)
+                : slotStyle(state))
     }
     if (typeof childValue === 'function') {
         return (state: PressableStateCallbackType) => (slotStyle
                 ? StyleSheet.flatten([slotStyle, childValue(state)])
-                : childValue(state)
+                : childValue(state))
     }
 
     return StyleSheet.flatten([slotStyle, childValue].filter(Boolean))
