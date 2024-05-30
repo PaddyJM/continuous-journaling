@@ -25,6 +25,7 @@ export default function Screen() {
 
   const updateProgressValue = (e: any) => {
     const { value } = e.target
+    if (value.length > 100) return;
     setProgress(value.length);
   };
 
