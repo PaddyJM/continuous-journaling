@@ -4,4 +4,4 @@ interface ProgressRootProps {
   getValueLabel?(value: number, max: number): string
 }
 
-export type { ProgressRootProps };
+export type { ProgressRootProps }

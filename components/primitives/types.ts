@@ -1,4 +1,4 @@
-import type { Pressable, Text, View, ViewStyle } from 'react-native';
+import type { Pressable, Text, View, ViewStyle } from 'react-native'
 
 type ComponentPropsWithAsChild<T extends React.ElementType<any>> =
   React.ComponentPropsWithoutRef<T> & { asChild?: boolean }
@@ -102,4 +102,4 @@ export type {
   SlottableViewProps,
   TextRef,
   ViewRef,
-};
+}

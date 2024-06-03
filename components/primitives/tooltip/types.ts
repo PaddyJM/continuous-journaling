@@ -1,4 +1,4 @@
-import type { ForceMountable } from '~/components/primitives/types';
+import type { ForceMountable } from '~/components/primitives/types'
 
 interface RootContext extends TooltipRootProps {
   open: boolean
@@ -46,4 +46,4 @@ export type {
   TooltipOverlayProps,
   TooltipPortalProps,
   TooltipRootProps,
-};
+}

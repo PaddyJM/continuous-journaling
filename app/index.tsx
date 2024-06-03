@@ -18,16 +18,17 @@ import { Progress } from '~/components/ui/progress'
 import { Text } from '~/components/ui/text'
 import { Textarea } from '~/components/ui/textarea'
 
-const MAIN_ICON_URI = 'https://i.pinimg.com/originals/94/b9/52/94b952ee642584804eed931f8a643ba2.png';
+const MAIN_ICON_URI =
+  'https://i.pinimg.com/originals/94/b9/52/94b952ee642584804eed931f8a643ba2.png'
 
 export default function Screen() {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = React.useState(0)
 
   const updateProgressValue = (e: any) => {
     const { value } = e.target
-    if (value.length > 100) return;
-    setProgress(value.length);
-  };
+    if (value.length > 100) return
+    setProgress(value.length)
+  }
 
   return (
     <View className="flex-1 justify-center items-center gap-5 p-6 bg-secondary/30">
@@ -64,9 +65,8 @@ export default function Screen() {
                 className="w-11 items-center"
               >
                 <Text className="text-sm font-bold text-sky-600">
-                  {progress}
-%
-</Text>
+                  {progress}%
+                </Text>
               </Animated.View>
             </LayoutAnimationConfig>
           </View>
@@ -81,10 +81,10 @@ export default function Screen() {
             className="shadow shadow-foreground/5"
             onPress={() => {}}
           >
-            <Text>Update</Text>
+            <Text>Done</Text>
           </Button>
         </CardFooter>
       </Card>
     </View>
-  );
+  )
 }
