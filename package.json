@@ -11,7 +11,8 @@
     "web": "expo start -c --web",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"./**/*.{js,jsx,ts,tsx}\"",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.json"
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.json",
+    "deploy:api:dev": "cd infrastructure/ && docker compose up -d && ENV=dev npx cdk synth && sam local start-api -p $(grep LOCAL_API_PORT ../.env | cut -d '=' -f2) -t ./cdk.out/ContinuousJournalingStack-dev.template.json --warm-containers EAGER --skip-pull-image && cd ../"
   },
   "dependencies": {
     "@radix-ui/react-progress": "^1.0.3",
